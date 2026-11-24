@@ -1,0 +1,1872 @@
+{
+  "id": "com.diyhome.intergasxtend",
+  "version": "1.6.6",
+  "compatibility": ">=12.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Intergas Xtend Monitor",
+    "nl": "Intergas Xtend Monitor"
+  },
+  "description": {
+    "en": "Reads live data from an Intergas Xtend heat pump via a local ESP32 JSON bridge.",
+    "nl": "Leest live gegevens van een Intergas Xtend warmtepomp via een lokale ESP32 JSON-bridge."
+  },
+  "category": [
+    "energy"
+  ],
+  "version_comment": {
+    "en": "Flow temp. system removed; COP and defrost graph in Insights; test option removed",
+    "nl": "Aanvoer systeem verwijderd; COP en ontdooien-grafiek in Insights; testoptie verwijderd"
+  },
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/xtend-app-small.png",
+    "large": "/assets/images/xtend-app-large.png",
+    "xlarge": "/assets/images/xtend-app-xlarge.png"
+  },
+  "author": {
+    "name": "melkuier"
+  },
+  "capabilities": {
+    "xtend_debiet": {
+      "type": "number",
+      "title": {
+        "en": "System flow",
+        "nl": "Systeemdebiet"
+      },
+      "units": {
+        "en": "l/min",
+        "nl": "l/min"
+      },
+      "decimals": 1,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/droplet.svg"
+    },
+    "xtend_waterdruk": {
+      "type": "number",
+      "title": {
+        "en": "Water pressure",
+        "nl": "Waterdruk"
+      },
+      "units": {
+        "en": "bar",
+        "nl": "bar"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/gauge.svg"
+    },
+    "xtend_wp_modus": {
+      "type": "string",
+      "title": {
+        "en": "Heat pump mode",
+        "nl": "Warmtepomp modus"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/gear.svg"
+    },
+    "xtend_systeemstatus": {
+      "type": "string",
+      "title": {
+        "en": "System status",
+        "nl": "Systeemstatus"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/gear.svg"
+    },
+    "xtend_storingscode": {
+      "type": "string",
+      "title": {
+        "en": "Fault code",
+        "nl": "Storingscode"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/warning.svg"
+    },
+    "xtend_vergrendelcode": {
+      "type": "string",
+      "title": {
+        "en": "Lockout code",
+        "nl": "Vergrendelcode"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/lock.svg"
+    },
+    "xtend_notificatiecode": {
+      "type": "string",
+      "title": {
+        "en": "Notification code",
+        "nl": "Notificatiecode"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/bell.svg"
+    },
+    "xtend_warmtevraag_status": {
+      "type": "string",
+      "title": {
+        "en": "Device status",
+        "nl": "Apparaatstatus"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/radiator.svg"
+    },
+    "xtend_brander_aan": {
+      "type": "boolean",
+      "title": {
+        "en": "Burner on (per Xtend)",
+        "nl": "Brander aan (volgens Xtend)"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insightsTitleTrue": {
+        "en": "Burner on",
+        "nl": "Brander aan"
+      },
+      "insightsTitleFalse": {
+        "en": "Burner off",
+        "nl": "Brander uit"
+      },
+      "icon": "/assets/icons/flame.svg"
+    },
+    "xtend_warmtevraag_aan": {
+      "type": "boolean",
+      "title": {
+        "en": "Heat pump heat demand",
+        "nl": "Warmtevraag warmtepomp"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/radiator.svg"
+    },
+    "xtend_interne_fout": {
+      "type": "boolean",
+      "title": {
+        "en": "Internal fault",
+        "nl": "Interne fout"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/warning.svg"
+    },
+    "xtend_storing_actief": {
+      "type": "boolean",
+      "title": {
+        "en": "Fault active",
+        "nl": "Storing actief"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/warning.svg"
+    },
+    "xtend_brander_status": {
+      "type": "number",
+      "title": {
+        "en": "Burner status code",
+        "nl": "Brander statuscode"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/flame.svg"
+    },
+    "xtend_status_rf_thermostaat": {
+      "type": "number",
+      "title": {
+        "en": "RF thermostat status",
+        "nl": "Status RF thermostaat"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/gear.svg"
+    },
+    "xtend_ionisatiestroom": {
+      "type": "number",
+      "title": {
+        "en": "Ionisation current",
+        "nl": "Ionisatiestroom"
+      },
+      "units": {
+        "en": "µA",
+        "nl": "µA"
+      },
+      "decimals": 1,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/bolt.svg"
+    },
+    "xtend_thermisch_vermogen": {
+      "type": "number",
+      "title": {
+        "en": "Current thermal power",
+        "nl": "Actueel thermisch vermogen"
+      },
+      "units": {
+        "en": "kW",
+        "nl": "kW"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/radiator.svg"
+    },
+    "xtend_actuele_cop": {
+      "type": "number",
+      "title": {
+        "en": "Current COP",
+        "nl": "Actuele COP"
+      },
+      "units": {
+        "en": "",
+        "nl": ""
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/chart.svg",
+      "insights": true
+    },
+    "xtend_branduren_totaal": {
+      "type": "number",
+      "title": {
+        "en": "Hours on power",
+        "nl": "Uren onder spanning"
+      },
+      "units": {
+        "en": "h",
+        "nl": "u"
+      },
+      "decimals": 1,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/clock.svg"
+    },
+    "xtend_poweron_hours": {
+      "type": "number",
+      "title": {
+        "en": "Hours on power (MSB, high byte)",
+        "nl": "Uren onder spanning (MSB)"
+      },
+      "units": {
+        "en": "h",
+        "nl": "u"
+      },
+      "decimals": 1,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/clock.svg"
+    },
+    "xtend_mislukte_ontstekingen": {
+      "type": "number",
+      "title": {
+        "en": "Failed ignitions",
+        "nl": "Mislukte ontstekingen"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/counter.svg"
+    },
+    "xtend_succesvolle_ontstekingen": {
+      "type": "number",
+      "title": {
+        "en": "Successful ignitions",
+        "nl": "Succesvolle ontstekingen"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/counter.svg"
+    },
+    "xtend_ontstekingen_warmwater": {
+      "type": "number",
+      "title": {
+        "en": "DHW ignitions",
+        "nl": "Ontstekingen warmwater"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/counter.svg"
+    },
+    "xtend_ignition_success_dhw_msb": {
+      "type": "number",
+      "title": {
+        "en": "Ignition success DHW (MSB)",
+        "nl": "Ontsteking succes warmwater (MSB)"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/counter.svg"
+    },
+    "xtend_ignition_successful_msb": {
+      "type": "number",
+      "title": {
+        "en": "Ignition successful (MSB)",
+        "nl": "Ontsteking succesvol (MSB)"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/counter.svg"
+    },
+    "xtend_gasverbruik_warmwater": {
+      "type": "number",
+      "title": {
+        "en": "Gas usage DHW (total)",
+        "nl": "Gasverbruik warmwater (totaal)"
+      },
+      "units": {
+        "en": "m³",
+        "nl": "m³"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/flame.svg"
+    },
+    "xtend_thermische_energie_cv": {
+      "type": "number",
+      "title": {
+        "en": "Thermal energy CH (total)",
+        "nl": "Thermische energie CV (totaal)"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 1,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/sigma.svg"
+    },
+    "xtend_stroom_koelen_gisteren": {
+      "type": "number",
+      "title": {
+        "en": "Electricity cooling yesterday",
+        "nl": "Stroom koelen gisteren"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/calendar.svg"
+    },
+    "xtend_stroom_warmwater_gisteren": {
+      "type": "number",
+      "title": {
+        "en": "Electricity DHW yesterday",
+        "nl": "Stroom warmwater gisteren"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/calendar.svg"
+    },
+    "xtend_stroom_cv_gisteren": {
+      "type": "number",
+      "title": {
+        "en": "Electricity CH yesterday",
+        "nl": "Stroom CV gisteren"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/calendar.svg"
+    },
+    "xtend_thermisch_ketel_gisteren": {
+      "type": "number",
+      "title": {
+        "en": "Thermal boiler yesterday",
+        "nl": "Thermisch ketel gisteren"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/calendar.svg"
+    },
+    "xtend_thermisch_koelen_gisteren": {
+      "type": "number",
+      "title": {
+        "en": "Thermal cooling yesterday",
+        "nl": "Thermisch koelen gisteren"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/calendar.svg"
+    },
+    "xtend_thermisch_warmwater_gisteren": {
+      "type": "number",
+      "title": {
+        "en": "Thermal DHW yesterday",
+        "nl": "Thermisch warmwater gisteren"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/calendar.svg"
+    },
+    "xtend_thermisch_cv_gisteren": {
+      "type": "number",
+      "title": {
+        "en": "Thermal CH yesterday",
+        "nl": "Thermisch CV gisteren"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/calendar.svg"
+    },
+    "xtend_compressorfrequentie": {
+      "type": "number",
+      "title": {
+        "en": "Compressor frequency",
+        "nl": "Compressorfrequentie"
+      },
+      "units": {
+        "en": "Hz",
+        "nl": "Hz"
+      },
+      "decimals": 1,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/fan.svg"
+    },
+    "xtend_stroom_cv_totaal": {
+      "type": "number",
+      "title": {
+        "en": "Electricity CH (total)",
+        "nl": "Stroom CV (totaal)"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/sigma.svg"
+    },
+    "xtend_stroom_warmwater_totaal": {
+      "type": "number",
+      "title": {
+        "en": "Electricity DHW (total)",
+        "nl": "Stroom warmwater (totaal)"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/sigma.svg"
+    },
+    "xtend_stroom_koelen_totaal": {
+      "type": "number",
+      "title": {
+        "en": "Electricity cooling (total)",
+        "nl": "Stroom koelen (totaal)"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/sigma.svg"
+    },
+    "xtend_thermisch_warmwater_totaal": {
+      "type": "number",
+      "title": {
+        "en": "Thermal DHW (total)",
+        "nl": "Thermisch warmwater (totaal)"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/sigma.svg"
+    },
+    "xtend_thermisch_ketel_totaal": {
+      "type": "number",
+      "title": {
+        "en": "Thermal boiler (total)",
+        "nl": "Thermisch ketel (totaal)"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/sigma.svg"
+    },
+    "xtend_thermisch_koelen_totaal": {
+      "type": "number",
+      "title": {
+        "en": "Thermal cooling (total)",
+        "nl": "Thermisch koelen (totaal)"
+      },
+      "units": {
+        "en": "kWh",
+        "nl": "kWh"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/sigma.svg"
+    },
+    "xtend_modulatie_ketel": {
+      "type": "number",
+      "title": {
+        "en": "Boiler modulation",
+        "nl": "Modulatie ketel"
+      },
+      "units": {
+        "en": "%",
+        "nl": "%"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/percent.svg"
+    },
+    "xtend_statusvlaggen": {
+      "type": "number",
+      "title": {
+        "en": "Status flags (raw)",
+        "nl": "Statusvlaggen (ruw)"
+      },
+      "units": {
+        "en": "",
+        "nl": ""
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/flag.svg"
+    },
+    "xtend_brander_io": {
+      "type": "number",
+      "title": {
+        "en": "Burner I/O (raw)",
+        "nl": "Brander I/O (ruw)"
+      },
+      "units": {
+        "en": "",
+        "nl": ""
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/flame.svg"
+    },
+    "xtend_bedrijfsmodus": {
+      "type": "string",
+      "title": {
+        "en": "Operational mode",
+        "nl": "Bedrijfsmodus"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/gear.svg"
+    },
+    "xtend_thermisch_vermogen_wp": {
+      "type": "number",
+      "title": {
+        "en": "Thermal power heat pump",
+        "nl": "Thermisch vermogen warmtepomp"
+      },
+      "units": {
+        "en": "kW",
+        "nl": "kW"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/radiator.svg"
+    },
+    "xtend_thermisch_vermogen_ketel": {
+      "type": "number",
+      "title": {
+        "en": "Thermal power boiler",
+        "nl": "Thermisch vermogen ketel"
+      },
+      "units": {
+        "en": "kW",
+        "nl": "kW"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/flame.svg"
+    },
+    "xtend_cop_gisteren": {
+      "type": "number",
+      "title": {
+        "en": "COP yesterday",
+        "nl": "COP gisteren"
+      },
+      "units": {
+        "en": "",
+        "nl": ""
+      },
+      "decimals": 1,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/calendar.svg"
+    },
+    "xtend_ketel_uren_cv": {
+      "type": "number",
+      "title": {
+        "en": "Boiler hours CH",
+        "nl": "Ketel draaiuren CV"
+      },
+      "units": {
+        "en": "h",
+        "nl": "h"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/clock.svg"
+    },
+    "xtend_ketel_uren_warmwater": {
+      "type": "number",
+      "title": {
+        "en": "Boiler hours DHW",
+        "nl": "Ketel draaiuren warmwater"
+      },
+      "units": {
+        "en": "h",
+        "nl": "h"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/clock.svg"
+    },
+    "xtend_ketel_starts": {
+      "type": "number",
+      "title": {
+        "en": "Boiler starts",
+        "nl": "Ketel starts"
+      },
+      "units": {
+        "en": "",
+        "nl": ""
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/counter.svg"
+    },
+    "xtend_ketel_vlamverlies": {
+      "type": "number",
+      "title": {
+        "en": "Flame loss",
+        "nl": "Vlamverlies"
+      },
+      "units": {
+        "en": "",
+        "nl": ""
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/warning.svg"
+    },
+    "xtend_wp_compressor_starts": {
+      "type": "number",
+      "title": {
+        "en": "Compressor starts",
+        "nl": "Compressorstarts"
+      },
+      "units": {
+        "en": "",
+        "nl": ""
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/counter.svg"
+    },
+    "xtend_wp_draaiuren": {
+      "type": "number",
+      "title": {
+        "en": "Heat pump runtime",
+        "nl": "Draaiuren warmtepomp"
+      },
+      "units": {
+        "en": "h",
+        "nl": "h"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/clock.svg"
+    },
+    "xtend_wp_ontdooicycli": {
+      "type": "number",
+      "title": {
+        "en": "Defrost cycles",
+        "nl": "Ontdooicycli"
+      },
+      "units": {
+        "en": "",
+        "nl": ""
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/snowflake.svg",
+      "insights": false
+    },
+    "xtend_ot_ketel_status": {
+      "type": "number",
+      "title": {
+        "en": "Boiler OpenTherm status (raw value)",
+        "nl": "Ketel OpenTherm-status (ruwe waarde)"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/flag.svg"
+    },
+    "xtend_ot_thermostaat_status": {
+      "type": "number",
+      "title": {
+        "en": "OpenTherm status Xtend to boiler (raw value)",
+        "nl": "OpenTherm-status Xtend naar ketel (ruwe waarde)"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/flag.svg"
+    },
+    "xtend_ot_vlam": {
+      "type": "boolean",
+      "title": {
+        "en": "Flame on per OpenTherm (bit 3)",
+        "nl": "Vlam aan volgens OpenTherm (bit 3)"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/flame.svg"
+    },
+    "xtend_ot_ch_actief": {
+      "type": "boolean",
+      "title": {
+        "en": "CH mode active per OpenTherm (bit 1)",
+        "nl": "CV-modus actief volgens OpenTherm (bit 1)"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/radiator.svg"
+    },
+    "xtend_ot_warmwater_actief": {
+      "type": "boolean",
+      "title": {
+        "en": "Hot water mode active per OpenTherm (bit 2)",
+        "nl": "Warmwatermodus actief volgens OpenTherm (bit 2)"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/droplet.svg"
+    },
+    "xtend_ketel_warmtevraag": {
+      "type": "boolean",
+      "title": {
+        "en": "Boiler heat demand",
+        "nl": "Warmtevraag ketel"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/radiator.svg"
+    },
+    "xtend_ontdooien": {
+      "type": "boolean",
+      "title": {
+        "en": "Defrost active",
+        "nl": "Ontdooien actief"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/snowflake.svg",
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Defrost started",
+        "nl": "Ontdooien gestart"
+      },
+      "insightsTitleFalse": {
+        "en": "Defrost ended",
+        "nl": "Ontdooien beëindigd"
+      }
+    },
+    "xtend_stille_modus": {
+      "type": "boolean",
+      "title": {
+        "en": "Silent mode active",
+        "nl": "Stille modus actief"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/gear.svg"
+    },
+    "xtend_cv_pomp_aan": {
+      "type": "boolean",
+      "title": {
+        "en": "CH pump on",
+        "nl": "CV-pomp aan"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/droplet.svg"
+    },
+    "xtend_compressor_aan": {
+      "type": "boolean",
+      "title": {
+        "en": "Compressor running",
+        "nl": "Compressor draait"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/fan.svg"
+    },
+    "xtend_ot_ketel_verbonden": {
+      "type": "boolean",
+      "title": {
+        "en": "Boiler connected via OpenTherm",
+        "nl": "Ketel verbonden via OpenTherm"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/flag.svg"
+    },
+    "xtend_koelen_draaiuren": {
+      "type": "number",
+      "title": {
+        "en": "Cooling runtime",
+        "nl": "Koelen draaiuren"
+      },
+      "units": {
+        "en": "h",
+        "nl": "h"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/clock.svg"
+    },
+    "xtend_koelen_starts": {
+      "type": "number",
+      "title": {
+        "en": "Cooling starts",
+        "nl": "Koelen starts"
+      },
+      "units": {
+        "en": "",
+        "nl": ""
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icons/counter.svg"
+    },
+    "xtend_ontdooien_grafiek": {
+      "type": "number",
+      "title": {
+        "en": "Defrost (graph)",
+        "nl": "Ontdooien (grafiek)"
+      },
+      "units": {
+        "en": "",
+        "nl": ""
+      },
+      "decimals": 0,
+      "min": 0,
+      "max": 1,
+      "getable": true,
+      "setable": false,
+      "uiComponent": null,
+      "icon": "/assets/icons/snowflake.svg",
+      "insights": true
+    }
+  },
+  "drivers": [
+    {
+      "id": "xtend",
+      "name": {
+        "en": "Intergas Xtend",
+        "nl": "Intergas Xtend"
+      },
+      "class": "heatpump",
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/xtend/assets/images/xtend-device-small.png",
+        "large": "/drivers/xtend/assets/images/xtend-device-large.png",
+        "xlarge": "/drivers/xtend/assets/images/xtend-device-xlarge.png"
+      },
+      "capabilities": [
+        "measure_temperature.aanvoer_wp",
+        "measure_temperature.retour_wp",
+        "measure_temperature.buiten",
+        "measure_temperature.aanvoer_ketel",
+        "xtend_debiet",
+        "xtend_waterdruk",
+        "xtend_thermisch_vermogen",
+        "xtend_actuele_cop",
+        "xtend_brander_aan",
+        "xtend_brander_status",
+        "xtend_warmtevraag_aan",
+        "xtend_warmtevraag_status",
+        "xtend_storing_actief",
+        "xtend_storingscode",
+        "xtend_vergrendelcode",
+        "xtend_notificatiecode",
+        "xtend_interne_fout",
+        "xtend_systeemstatus",
+        "xtend_wp_modus",
+        "xtend_status_rf_thermostaat",
+        "xtend_ionisatiestroom",
+        "xtend_branduren_totaal",
+        "xtend_thermische_energie_cv",
+        "xtend_stroom_cv_gisteren",
+        "xtend_stroom_warmwater_gisteren",
+        "xtend_stroom_koelen_gisteren",
+        "xtend_thermisch_cv_gisteren",
+        "xtend_thermisch_warmwater_gisteren",
+        "xtend_thermisch_koelen_gisteren",
+        "xtend_thermisch_ketel_gisteren",
+        "measure_power",
+        "meter_power",
+        "measure_temperature.gevraagd_systeem",
+        "xtend_compressorfrequentie",
+        "xtend_stroom_cv_totaal",
+        "xtend_stroom_warmwater_totaal",
+        "xtend_stroom_koelen_totaal",
+        "xtend_thermisch_warmwater_totaal",
+        "xtend_thermisch_ketel_totaal",
+        "xtend_thermisch_koelen_totaal",
+        "xtend_modulatie_ketel",
+        "xtend_statusvlaggen",
+        "xtend_bedrijfsmodus",
+        "xtend_thermisch_vermogen_wp",
+        "xtend_thermisch_vermogen_ketel",
+        "xtend_cop_gisteren",
+        "xtend_ketel_uren_cv",
+        "xtend_ketel_uren_warmwater",
+        "xtend_ketel_starts",
+        "xtend_ketel_vlamverlies",
+        "xtend_wp_compressor_starts",
+        "xtend_wp_draaiuren",
+        "xtend_wp_ontdooicycli",
+        "xtend_ot_ketel_status",
+        "xtend_ot_thermostaat_status",
+        "xtend_ot_vlam",
+        "xtend_ot_ch_actief",
+        "xtend_ot_warmwater_actief",
+        "xtend_ketel_warmtevraag",
+        "xtend_ontdooien",
+        "xtend_ontdooien_grafiek",
+        "xtend_stille_modus",
+        "xtend_cv_pomp_aan",
+        "xtend_compressor_aan",
+        "xtend_ot_ketel_verbonden",
+        "xtend_koelen_draaiuren",
+        "xtend_koelen_starts"
+      ],
+      "capabilitiesOptions": {
+        "measure_temperature.aanvoer_wp": {
+          "title": {
+            "en": "Flow temp. heat pump",
+            "nl": "Aanvoer warmtepomp"
+          }
+        },
+        "measure_temperature.retour_wp": {
+          "title": {
+            "en": "Return temp. heat pump",
+            "nl": "Retour warmtepomp"
+          }
+        },
+        "measure_temperature.buiten": {
+          "title": {
+            "en": "Outdoor temperature",
+            "nl": "Buitentemperatuur"
+          }
+        },
+        "measure_temperature.aanvoer_ketel": {
+          "title": {
+            "en": "Flow temp. boiler",
+            "nl": "Aanvoer ketel"
+          }
+        },
+        "measure_temperature.gevraagd_systeem": {
+          "title": {
+            "en": "Requested temperature",
+            "nl": "Gevraagde temperatuur"
+          }
+        },
+        "measure_power": {
+          "title": {
+            "en": "Heat pump electrical power",
+            "nl": "Elektrisch vermogen warmtepomp"
+          }
+        },
+        "meter_power": {
+          "title": {
+            "en": "Heat pump electricity total",
+            "nl": "Elektriciteit warmtepomp totaal"
+          }
+        }
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "id": "ip_address",
+          "type": "text",
+          "label": {
+            "en": "ESP32 IP address or hostname",
+            "nl": "IP-adres of hostnaam van de ESP32"
+          },
+          "value": "",
+          "hint": {
+            "en": "e.g. 192.168.1.50",
+            "nl": "bijv. 192.168.1.50"
+          }
+        },
+        {
+          "id": "poll_interval",
+          "type": "number",
+          "label": {
+            "en": "Poll interval (seconds)",
+            "nl": "Ophaalinterval (seconden)"
+          },
+          "value": 60,
+          "min": 30,
+          "max": 3600,
+          "hint": {
+            "en": "The ESP bridge refreshes about every 50 seconds, so polling faster has little benefit.",
+            "nl": "De ESP-bridge ververst ongeveer elke 50 seconden, sneller ophalen heeft weinig zin."
+          }
+        },
+        {
+          "id": "toelichting",
+          "type": "label",
+          "label": {
+            "en": "Values to show",
+            "nl": "Waarden om te tonen"
+          },
+          "value": "Vink uit wat je niet wilt. Een uitgevinkte waarde verdwijnt als tegel en wordt niet meer bijgewerkt of in Insights gelogd. Opnieuw aanvinken zet hem terug."
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Temperatures",
+            "nl": "Temperaturen"
+          },
+          "children": [
+            {
+              "id": "show_measure_temperature__aanvoer_wp",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Flow temp. heat pump",
+                "nl": "Aanvoer warmtepomp"
+              }
+            },
+            {
+              "id": "show_measure_temperature__retour_wp",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Return temp. heat pump",
+                "nl": "Retour warmtepomp"
+              }
+            },
+            {
+              "id": "show_measure_temperature__buiten",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Outdoor temperature",
+                "nl": "Buitentemperatuur"
+              }
+            },
+            {
+              "id": "show_measure_temperature__aanvoer_ketel",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Flow temp. boiler",
+                "nl": "Aanvoer ketel"
+              }
+            },
+            {
+              "id": "show_measure_temperature__gevraagd_systeem",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Requested temperature",
+                "nl": "Gevraagde temperatuur"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Water: flow and pressure",
+            "nl": "Water: debiet en druk"
+          },
+          "children": [
+            {
+              "id": "show_xtend_debiet",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "System flow",
+                "nl": "Systeemdebiet"
+              }
+            },
+            {
+              "id": "show_xtend_waterdruk",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Water pressure",
+                "nl": "Waterdruk"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Heat pump",
+            "nl": "Warmtepomp"
+          },
+          "children": [
+            {
+              "id": "show_xtend_warmtevraag_aan",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Heat pump heat demand",
+                "nl": "Warmtevraag warmtepomp"
+              }
+            },
+            {
+              "id": "show_xtend_compressorfrequentie",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Compressor frequency",
+                "nl": "Compressorfrequentie"
+              }
+            },
+            {
+              "id": "show_xtend_ontdooien",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Defrost active",
+                "nl": "Ontdooien actief"
+              }
+            },
+            {
+              "id": "show_xtend_stille_modus",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Silent mode active",
+                "nl": "Stille modus actief"
+              }
+            },
+            {
+              "id": "show_xtend_cv_pomp_aan",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "CH pump on",
+                "nl": "CV-pomp aan"
+              }
+            },
+            {
+              "id": "show_xtend_compressor_aan",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Compressor running",
+                "nl": "Compressor draait"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Power and energy",
+            "nl": "Vermogen en energie"
+          },
+          "children": [
+            {
+              "id": "show_xtend_thermisch_vermogen",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Current thermal power",
+                "nl": "Actueel thermisch vermogen"
+              }
+            },
+            {
+              "id": "show_xtend_actuele_cop",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Current COP",
+                "nl": "Actuele COP"
+              }
+            },
+            {
+              "id": "show_xtend_thermische_energie_cv",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Thermal energy CH (total)",
+                "nl": "Thermische energie CV (totaal)"
+              }
+            },
+            {
+              "id": "show_measure_power",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Heat pump electrical power",
+                "nl": "Elektrisch vermogen warmtepomp"
+              }
+            },
+            {
+              "id": "show_meter_power",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Heat pump electricity total",
+                "nl": "Elektriciteit warmtepomp totaal"
+              }
+            },
+            {
+              "id": "show_xtend_stroom_cv_totaal",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Electricity CH (total)",
+                "nl": "Stroom CV (totaal)"
+              }
+            },
+            {
+              "id": "show_xtend_stroom_warmwater_totaal",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Electricity DHW (total)",
+                "nl": "Stroom warmwater (totaal)"
+              }
+            },
+            {
+              "id": "show_xtend_stroom_koelen_totaal",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Electricity cooling (total)",
+                "nl": "Stroom koelen (totaal)"
+              }
+            },
+            {
+              "id": "show_xtend_thermisch_warmwater_totaal",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Thermal DHW (total)",
+                "nl": "Thermisch warmwater (totaal)"
+              }
+            },
+            {
+              "id": "show_xtend_thermisch_ketel_totaal",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Thermal boiler (total)",
+                "nl": "Thermisch ketel (totaal)"
+              }
+            },
+            {
+              "id": "show_xtend_thermisch_koelen_totaal",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Thermal cooling (total)",
+                "nl": "Thermisch koelen (totaal)"
+              }
+            },
+            {
+              "id": "show_xtend_thermisch_vermogen_wp",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Thermal power heat pump",
+                "nl": "Thermisch vermogen warmtepomp"
+              }
+            },
+            {
+              "id": "show_xtend_thermisch_vermogen_ketel",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Thermal power boiler",
+                "nl": "Thermisch vermogen ketel"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Gas boiler and burner",
+            "nl": "Gasketel en brander"
+          },
+          "children": [
+            {
+              "id": "show_xtend_brander_aan",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Burner on (per Xtend)",
+                "nl": "Brander aan (volgens Xtend)"
+              }
+            },
+            {
+              "id": "show_xtend_brander_status",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Burner status code",
+                "nl": "Brander statuscode"
+              }
+            },
+            {
+              "id": "show_xtend_ionisatiestroom",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Ionisation current",
+                "nl": "Ionisatiestroom"
+              }
+            },
+            {
+              "id": "show_xtend_modulatie_ketel",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Boiler modulation",
+                "nl": "Modulatie ketel"
+              }
+            },
+            {
+              "id": "show_xtend_ketel_warmtevraag",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Boiler heat demand",
+                "nl": "Warmtevraag ketel"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Status, faults and codes",
+            "nl": "Status, storingen en codes"
+          },
+          "children": [
+            {
+              "id": "show_xtend_warmtevraag_status",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Device status",
+                "nl": "Apparaatstatus"
+              }
+            },
+            {
+              "id": "show_xtend_storing_actief",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Fault active",
+                "nl": "Storing actief"
+              }
+            },
+            {
+              "id": "show_xtend_storingscode",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Fault code",
+                "nl": "Storingscode"
+              }
+            },
+            {
+              "id": "show_xtend_vergrendelcode",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Lockout code",
+                "nl": "Vergrendelcode"
+              }
+            },
+            {
+              "id": "show_xtend_notificatiecode",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Notification code",
+                "nl": "Notificatiecode"
+              }
+            },
+            {
+              "id": "show_xtend_interne_fout",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Internal fault",
+                "nl": "Interne fout"
+              }
+            },
+            {
+              "id": "show_xtend_systeemstatus",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "System status",
+                "nl": "Systeemstatus"
+              }
+            },
+            {
+              "id": "show_xtend_wp_modus",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Heat pump mode",
+                "nl": "Warmtepomp modus"
+              }
+            },
+            {
+              "id": "show_xtend_status_rf_thermostaat",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "RF thermostat status",
+                "nl": "Status RF thermostaat"
+              }
+            },
+            {
+              "id": "show_xtend_statusvlaggen",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Status flags (raw)",
+                "nl": "Statusvlaggen (ruw)"
+              }
+            },
+            {
+              "id": "show_xtend_bedrijfsmodus",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Operational mode",
+                "nl": "Bedrijfsmodus"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Counters and running hours",
+            "nl": "Tellers en draaiuren"
+          },
+          "children": [
+            {
+              "id": "show_xtend_branduren_totaal",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Hours on power",
+                "nl": "Uren onder spanning"
+              }
+            },
+            {
+              "id": "show_xtend_ketel_uren_cv",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Boiler hours CH",
+                "nl": "Ketel draaiuren CV"
+              }
+            },
+            {
+              "id": "show_xtend_ketel_uren_warmwater",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Boiler hours DHW",
+                "nl": "Ketel draaiuren warmwater"
+              }
+            },
+            {
+              "id": "show_xtend_ketel_starts",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Boiler starts",
+                "nl": "Ketel starts"
+              }
+            },
+            {
+              "id": "show_xtend_ketel_vlamverlies",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Flame loss",
+                "nl": "Vlamverlies"
+              }
+            },
+            {
+              "id": "show_xtend_wp_compressor_starts",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Compressor starts",
+                "nl": "Compressorstarts"
+              }
+            },
+            {
+              "id": "show_xtend_wp_draaiuren",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Heat pump runtime",
+                "nl": "Draaiuren warmtepomp"
+              }
+            },
+            {
+              "id": "show_xtend_wp_ontdooicycli",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Defrost cycles",
+                "nl": "Ontdooicycli"
+              }
+            },
+            {
+              "id": "show_xtend_koelen_draaiuren",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Cooling runtime",
+                "nl": "Koelen draaiuren"
+              }
+            },
+            {
+              "id": "show_xtend_koelen_starts",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Cooling starts",
+                "nl": "Koelen starts"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Yesterday values",
+            "nl": "Waarden van gisteren"
+          },
+          "children": [
+            {
+              "id": "show_xtend_stroom_cv_gisteren",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Electricity CH yesterday",
+                "nl": "Stroom CV gisteren"
+              }
+            },
+            {
+              "id": "show_xtend_stroom_warmwater_gisteren",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Electricity DHW yesterday",
+                "nl": "Stroom warmwater gisteren"
+              }
+            },
+            {
+              "id": "show_xtend_stroom_koelen_gisteren",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Electricity cooling yesterday",
+                "nl": "Stroom koelen gisteren"
+              }
+            },
+            {
+              "id": "show_xtend_thermisch_cv_gisteren",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Thermal CH yesterday",
+                "nl": "Thermisch CV gisteren"
+              }
+            },
+            {
+              "id": "show_xtend_thermisch_warmwater_gisteren",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Thermal DHW yesterday",
+                "nl": "Thermisch warmwater gisteren"
+              }
+            },
+            {
+              "id": "show_xtend_thermisch_koelen_gisteren",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Thermal cooling yesterday",
+                "nl": "Thermisch koelen gisteren"
+              }
+            },
+            {
+              "id": "show_xtend_thermisch_ketel_gisteren",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Thermal boiler yesterday",
+                "nl": "Thermisch ketel gisteren"
+              }
+            },
+            {
+              "id": "show_xtend_cop_gisteren",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "COP yesterday",
+                "nl": "COP gisteren"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "OpenTherm",
+            "nl": "OpenTherm"
+          },
+          "children": [
+            {
+              "id": "show_xtend_ot_ketel_status",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Boiler OpenTherm status (raw value)",
+                "nl": "Ketel OpenTherm-status (ruwe waarde)"
+              }
+            },
+            {
+              "id": "show_xtend_ot_thermostaat_status",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "OpenTherm status Xtend to boiler (raw value)",
+                "nl": "OpenTherm-status Xtend naar ketel (ruwe waarde)"
+              }
+            },
+            {
+              "id": "show_xtend_ot_vlam",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Flame on per OpenTherm (bit 3)",
+                "nl": "Vlam aan volgens OpenTherm (bit 3)"
+              }
+            },
+            {
+              "id": "show_xtend_ot_ch_actief",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "CH mode active per OpenTherm (bit 1)",
+                "nl": "CV-modus actief volgens OpenTherm (bit 1)"
+              }
+            },
+            {
+              "id": "show_xtend_ot_warmwater_actief",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Hot water mode active per OpenTherm (bit 2)",
+                "nl": "Warmwatermodus actief volgens OpenTherm (bit 2)"
+              }
+            },
+            {
+              "id": "show_xtend_ot_ketel_verbonden",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Boiler connected via OpenTherm",
+                "nl": "Ketel verbonden via OpenTherm"
+              }
+            }
+          ]
+        }
+      ],
+      "energy": {
+        "cumulative": true,
+        "cumulativeImportedCapability": "meter_power"
+      }
+    }
+  ],
+  "brandColor": "#CE230E",
+  "source": "https://github.com/melkuier/xtend-homey",
+  "bugs": {
+    "url": "https://github.com/melkuier/xtend-homey/issues"
+  }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<path fill-rule="evenodd" d="M12 8H52A6 6 0 0 1 58 14V46A6 6 0 0 1 52 52H12A6 6 0 0 1 6 46V14A6 6 0 0 1 12 8ZM13 12H51A3 3 0 0 1 54 15V45A3 3 0 0 1 51 48H13A3 3 0 0 1 10 45V15A3 3 0 0 1 13 12Z"/>
+<path fill-rule="evenodd" d="M32 16a14 14 0 1 0 0 28 14 14 0 1 0 0-28ZM32 18a12 12 0 1 1 0 24 12 12 0 1 1 0-24Z"/>
+<ellipse cx="32" cy="23" rx="3.2" ry="5" transform="rotate(20 32 30)"/>
+<ellipse cx="32" cy="23" rx="3.2" ry="5" transform="rotate(110 32 30)"/>
+<ellipse cx="32" cy="23" rx="3.2" ry="5" transform="rotate(200 32 30)"/>
+<ellipse cx="32" cy="23" rx="3.2" ry="5" transform="rotate(290 32 30)"/>
+<circle cx="32" cy="30" r="2.5"/>
+<rect x="12" y="52" width="8" height="4" rx="1.5"/>
+<rect x="44" y="52" width="8" height="4" rx="1.5"/>
+</svg>
